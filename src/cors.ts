@@ -13,7 +13,7 @@ export default class Cors {
    * Initialise the middleware.
    *
    * @param config An optional configuration object.
-   * 
+   *
    * @constructor
    */
   constructor(config?: Config) {
@@ -40,12 +40,12 @@ export default class Cors {
    *
    * @returns A valid CORS response object.
    */
-  public handleCors(context: Context, next: CallableFunction) {
+  public handleCors(context: Context, next: CallableFunction): unknown {
     const requestOrigin = context.request.headers.get("Origin");
-    
+
     // Determine the allowed origin
     const allowedOrigin = this.getAllowedOrigin(requestOrigin);
-    
+
     if (allowedOrigin) {
       context.response.headers.set(
         "Access-Control-Allow-Origin",
