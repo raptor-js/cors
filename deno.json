@@ -1,0 +1,28 @@
+{
+  "name": "@raptor/cors",
+  "version": "0.1.0",
+  "exports": "./mod.ts",
+  "publish": {
+    "exclude": [
+      ".github",
+      "examples",
+      "docs",
+      "**/*.test.ts"
+    ]
+  },
+  "tasks": {
+    "test": "APP_URL=http://localhost:8000 deno test --coverage=coverage-report --allow-all --parallel",
+    "test-coverage": "APP_URL=http://localhost:8000 deno coverage coverage-report"
+  },
+  "fmt": {
+    "exclude": [
+      "README.md"
+    ]
+  },
+  "lock": true,
+  "imports": {
+    "@raptor/framework": "jsr:@raptor/framework@^0.18.0",
+    "@raptor/router": "jsr:@raptor/router@^0.19.0",
+    "@std/assert": "jsr:@std/assert@^1.0.19"
+  }
+}
