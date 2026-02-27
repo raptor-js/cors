@@ -1,7 +1,6 @@
-import type { Context, Middleware } from "@raptor/framework";
+import { type Context, HttpMethod, type Middleware } from "@raptor/framework";
 
 import type { Config } from "./config.ts";
-import { HttpMethod } from "@raptor/router";
 
 /**
  * First-party CORS middleware for Raptor.

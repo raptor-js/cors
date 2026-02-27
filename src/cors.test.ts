@@ -1,10 +1,9 @@
 // Copyright 2026, Raptor. All rights reserved. MIT license.
 
 import { assertEquals } from "@std/assert";
-import type { Context } from "@raptor/framework";
+import { type Context, HttpMethod } from "@raptor/framework";
 
 import Cors from "./cors.ts";
-import { HttpMethod } from "@raptor/router";
 
 function createMockContext(
   method: string = "GET",

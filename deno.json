@@ -1,6 +1,6 @@
 {
   "name": "@raptor/cors",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "exports": "./mod.ts",
   "publish": {
     "exclude": [
@@ -21,8 +21,7 @@
   },
   "lock": true,
   "imports": {
-    "@raptor/framework": "jsr:@raptor/framework@^0.18.0",
-    "@raptor/router": "jsr:@raptor/router@^0.19.0",
+    "@raptor/framework": "jsr:@raptor/framework@^0.19.0",
     "@std/assert": "jsr:@std/assert@^1.0.19"
   }
 }
