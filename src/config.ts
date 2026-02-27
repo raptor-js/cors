@@ -1,5 +1,8 @@
 import type { HttpMethod } from "@raptor/router";
 
+/**
+ * Optional configuration object for CORS package.
+ */
 export interface Config {
   /**
    * Allowed origin(s) for CORS requests.

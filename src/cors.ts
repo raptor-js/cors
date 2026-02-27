@@ -3,6 +3,9 @@ import type { Context, Middleware } from "@raptor/framework";
 import type { Config } from "./config.ts";
 import { HttpMethod } from "@raptor/router";
 
+/**
+ * First-party CORS middleware for Raptor.
+ */
 export default class Cors {
   /**
    * Configuration which can be used to change functionality.
@@ -43,7 +46,6 @@ export default class Cors {
   public handleCors(context: Context, next: CallableFunction): unknown {
     const requestOrigin = context.request.headers.get("Origin");
 
-    // Determine the allowed origin
     const allowedOrigin = this.getAllowedOrigin(requestOrigin);
 
     if (allowedOrigin) {
@@ -52,7 +54,6 @@ export default class Cors {
         allowedOrigin,
       );
 
-      // If credentials are enabled and origin is not wildcard, set credentials header
       if (this.config.credentials && allowedOrigin !== "*") {
         context.response.headers.set(
           "Access-Control-Allow-Credentials",
@@ -61,7 +62,6 @@ export default class Cors {
       }
     }
 
-    // Set allowed methods
     if (this.config.methods && this.config.methods.length > 0) {
       context.response.headers.set(
         "Access-Control-Allow-Methods",
@@ -69,7 +69,6 @@ export default class Cors {
       );
     }
 
-    // Set allowed headers
     if (this.config.headers && this.config.headers.length > 0) {
       context.response.headers.set(
         "Access-Control-Allow-Headers",
@@ -77,7 +76,6 @@ export default class Cors {
       );
     }
 
-    // Set max age for preflight cache
     if (this.config.maxAge) {
       context.response.headers.set(
         "Access-Control-Max-Age",
@@ -85,7 +83,6 @@ export default class Cors {
       );
     }
 
-    // Set exposed headers
     if (this.config.exposeHeaders && this.config.exposeHeaders.length > 0) {
       context.response.headers.set(
         "Access-Control-Expose-Headers",
@@ -93,7 +90,6 @@ export default class Cors {
       );
     }
 
-    // Handle preflight OPTIONS request
     if (context.request.method === "OPTIONS") {
       return new Response(null, {
         status: 204,
@@ -101,7 +97,6 @@ export default class Cors {
       });
     }
 
-    // Continue to next middleware for actual requests
     return next();
   }
 
@@ -109,34 +104,33 @@ export default class Cors {
    * Determine the allowed origin based on the configuration and request origin.
    *
    * @param requestOrigin The origin from the request headers.
+   *
    * @returns The allowed origin or null if not allowed.
    */
   private getAllowedOrigin(requestOrigin: string | null): string | null {
     const { origin } = this.config;
 
-    // No origin configured, default to wildcard
     if (!origin) {
       return "*";
     }
 
-    // String: single origin or wildcard
     if (typeof origin === "string") {
       return origin;
     }
 
-    // Array: multiple origins
     if (Array.isArray(origin)) {
       if (!requestOrigin) {
         return null;
       }
+
       return origin.includes(requestOrigin) ? requestOrigin : null;
     }
 
-    // Function: dynamic validation
     if (typeof origin === "function") {
       if (!requestOrigin) {
         return null;
       }
+
       return origin(requestOrigin) ? requestOrigin : null;
     }
 
@@ -161,7 +155,7 @@ export default class Cors {
         HttpMethod.TRACE,
       ],
       headers: ["Content-Type", "Authorization"],
-      maxAge: "86400", // 24 hours
+      maxAge: "86400",
       credentials: false,
       exposeHeaders: [],
     };
