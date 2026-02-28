@@ -1,7 +1,7 @@
 // Copyright 2026, Raptor. All rights reserved. MIT license.
 
 import { assertEquals } from "@std/assert";
-import { type Context, HttpMethod } from "@raptor/framework";
+import { type Context, HttpMethod } from "@raptor/kernel";
 
 import Cors from "./cors.ts";
 
