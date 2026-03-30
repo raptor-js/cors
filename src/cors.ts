@@ -1,4 +1,4 @@
-import { type Context, HttpMethod, type Middleware } from "@raptor/kernel";
+import { type Context, HttpMethod, type Middleware } from "@raptor/types";
 
 import type { Config } from "./config.ts";
 
