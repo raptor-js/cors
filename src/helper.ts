@@ -1,4 +1,4 @@
-import type { Middleware } from "@raptor/types";
+import type { Middleware } from "@raptor-js/types";
 
 import Cors from "./cors.ts";
 import type { Config } from "./config.ts";

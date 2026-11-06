@@ -1,4 +1,4 @@
-import type { HttpMethod } from "@raptor/types";
+import type { HttpMethod } from "@raptor-js/types";
 
 /**
  * Optional configuration object for CORS package.

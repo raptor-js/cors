@@ -1,0 +1,40 @@
+{
+  "name": "@raptor-js/cors",
+  "version": "0.4.0",
+  "description": "First-party CORS middleware for the Raptor framework.",
+  "license": "MIT",
+  "homepage": "https://raptorjs.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raptor-js/cors.git"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/mod.d.ts",
+      "default": "./dist/mod.js"
+    }
+  },
+  "files": [
+    "dist",
+    "!dist/**/*.test.*"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "lint": "biome check",
+    "format": "biome check --write",
+    "test": "node --test 'src/**/*.test.ts'",
+    "test:watch": "node --test --watch 'src/**/*.test.ts'",
+    "test:coverage": "node --test --experimental-test-coverage 'src/**/*.test.ts'",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@raptor-js/types": "^0.4.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.6",
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2"
+  }
+}
